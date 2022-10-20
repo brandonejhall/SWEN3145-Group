@@ -1,0 +1,164 @@
+model CB
+
+class Date
+attributes
+    day: Integer init: 1
+    month: Integer init: 1
+    year: Integer init: 1901
+
+operations
+    /** Updates the attribute values */
+    initialise(d: Integer, m: Integer, y: Integer)
+    begin
+        self.day := d;
+        self.month := m;
+        self.year := y;
+    end
+    pre parametersHaveValidValues: isValid(d, m, y)
+    post attributesCorrectlyUpdatedAlt:
+        (if d = day@pre then day = day@pre else day = d endif) and
+            (if m = month@pre then month = month@pre else month = m endif) and
+                (if y = year@pre then year = year@pre else year = y endif)
+
+    /* Accessors */
+    getDay(): Integer = day
+    getMonth(): Integer = month
+    getYear(): Integer = year
+
+    /* Mutators - ***** Fill in your OCL expressions and pre- and
+                post-conditions for these  from the previous Modelling
+                session that asked you to write them. */
+    setDay(d: Integer)
+    setMonth(m: Integer)
+    setYear(y: Integer)
+
+    /** returns true if all the attributes are not null, false otherwise */
+    isInitialised(): Boolean =
+        day <> null and month <> null and year <> null
+
+    /** returns true if self is before d, , false otherwise */
+    before(d: Date): Boolean = true /* ***** Fill in your OCL expression
+                from  the previous Modelling session that asked you
+                to write it. */
+
+    /** returns true if self has the same values as d, false otherwise */
+    equals(d: Date): Boolean = day = d.day and month = d.month and year = d.year
+    pre bothAreInitialised: isInitialised() and d.isInitialised()
+    pre bothAreValid: isValid(day, month, year) and
+        isValid(d.day, d.month, d.year)
+    post returnValueConditions:
+        let
+            s = Set{day = d.day, month = d.month, year = d.month}
+        in
+            result =  s->excludes(false) /* true or flase will be in result */
+
+    /** returns true if self is after d, false otherwise */
+    after(d: Date): Boolean = not equals(d) and not before(d)
+
+    /** returns true if y is a leap year, false otherwise */
+    isLeapYear(y: Integer): Boolean =
+        if (y.mod(400)=0 or (y.mod(100)>0 and y.mod(4)=0))
+        then true
+        else false
+        endif
+    pre yearIsValid: y > 1900
+
+    dayValid(v: Integer): Boolean = v >= 1 and v <= 31
+
+    monthValid(v: Integer): Boolean =  v >= 1 and v <= 12
+
+    yearValid(v: Integer): Boolean = v > 1900
+
+    dayAndMonthValid(d: Integer, m: Integer): Boolean =
+        Set{4, 6, 9, 11}->includes(m) implies d < 31
+
+    febValid(d: Integer, y: Integer): Boolean =
+        (isLeapYear(y) implies d <= 29) and
+            (not isLeapYear(y) implies d <= 28)
+
+    isValid(d: Integer, m: Integer, y: Integer): Boolean =
+         dayValid(d) and monthValid(m) and yearValid(y) and
+            dayAndMonthValid(d, m) and (m = 2 implies febValid(d, y))
+
+constraints
+    inv dayValues: dayValid(day)
+    inv monthValues: monthValid(month)
+    inv yearValues: yearValid(year)
+    inv monthsWith30Days: dayAndMonthValid(day, month)
+    inv inLeapYearFebDaysCorrect: month = 2 implies febValid(day, year)
+end
+
+
+
+class DateTime < Date
+attributes
+    hour: Integer
+    minute: Integer
+    second: Integer
+end
+
+
+class User 
+attributes 
+   name: String
+   userName: String
+   DOB: Date
+   email: String
+   password: String
+   record: String derived: ''
+   status: UserStatus
+end
+
+class Game
+attributes
+ gameResult: GameResult
+ time: DateTime
+ gameStatus: GameStatus
+end
+
+
+class preference
+attributes 
+    name: String
+    value: String
+end
+
+
+class LeaderBoard
+attributes
+    placements: Integer derived:0
+end
+
+class CheckersBlitz 
+end
+
+class Tournament < Game
+attributes 
+ nbrOfPlayers: Integer
+ nbrOfMatches: Integer
+end
+
+class Result
+attributes
+ isWinner:Boolean
+end
+
+enum GameStatus{
+    Ongoing,
+    Started,
+    Finished
+}
+
+enum GameResult{
+    Win /* User has won */,
+    Lose /* User has Lost*/,
+    Draw /* User Draw */
+}
+
+
+enum UserStatus{
+    Available,
+    FriendsOnly,
+    DoNotDisturb
+}
+

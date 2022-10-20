@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?><diagram_Layout version="13">
+    <diagramOptions>
+        <autolayout>false</autolayout>
+        <antialiasing>false</antialiasing>
+        <showassocnames>false</showassocnames>
+        <showattributes>true</showattributes>
+        <showmultiplicities>false</showmultiplicities>
+        <showoperations>false</showoperations>
+        <showrolenames>true</showrolenames>
+        <showgrid>false</showgrid>
+    </diagramOptions>
+    <node id="Game" sizeCalculated="true" type="Class">
+        <name>Game</name>
+        <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
+            <x>12.0</x>
+            <y>57.0</y>
+        </strategy>
+        <hidden>false</hidden>
+    </node>
+    <node id="User" sizeCalculated="true" type="Class">
+        <name>User</name>
+        <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
+            <x>271.0</x>
+            <y>-4.0</y>
+        </strategy>
+        <hidden>false</hidden>
+    </node>
+    <node id="CheckersBlitz" sizeCalculated="true" type="Class">
+        <name>CheckersBlitz</name>
+        <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
+            <x>384.0</x>
+            <y>99.0</y>
+        </strategy>
+        <hidden>false</hidden>
+    </node>
+    <node id="Date" sizeCalculated="true" type="Class">
+        <name>Date</name>
+        <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
+            <x>49.0</x>
+            <y>304.0</y>
+        </strategy>
+        <hidden>false</hidden>
+    </node>
+    <node id="DateTime" sizeCalculated="true" type="Class">
+        <name>DateTime</name>
+        <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
+            <x>93.0</x>
+            <y>209.0</y>
+        </strategy>
+        <hidden>false</hidden>
+    </node>
+    <node id="GameStatus" sizeCalculated="true" type="Enumeration">
+        <name>GameStatus</name>
+        <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
+            <x>390.0</x>
+            <y>209.0</y>
+        </strategy>
+        <hidden>false</hidden>
+    </node>
+    <node id="rEsult" sizeCalculated="true" type="Enumeration">
+        <name>rEsult</name>
+        <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
+            <x>212.0</x>
+            <y>268.0</y>
+        </strategy>
+        <hidden>false</hidden>
+    </node>
+    <node id="UserStatus" sizeCalculated="true" type="Enumeration">
+        <name>UserStatus</name>
+        <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
+            <x>357.0</x>
+            <y>286.0</y>
+        </strategy>
+        <hidden>false</hidden>
+    </node>
+    <edge type="Generalization">
+        <source>DateTime</source>
+        <target>Date</target>
+        <name>Inheritance</name>
+        <properties/>
+        <waypoints>
+            <edgeproperty id="Generalization::DateTime::Date::WayPoint::0" sizeCalculated="true" type="WayPoint" userDefined="false" visible="true">
+                <name>0</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyAttachedIntersection">
+                    <userOffsetX>0.0</userOffsetX>
+                    <userOffsetY>0.0</userOffsetY>
+                </strategy>
+                <id>0</id>
+                <specialid>1</specialid>
+                <hidden>false</hidden>
+            </edgeproperty>
+            <edgeproperty id="Generalization::DateTime::Date::WayPoint::1" sizeCalculated="true" type="WayPoint" userDefined="false" visible="true">
+                <name>1</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyAttachedIntersection">
+                    <userOffsetX>0.0</userOffsetX>
+                    <userOffsetY>0.0</userOffsetY>
+                </strategy>
+                <id>1</id>
+                <specialid>2</specialid>
+                <hidden>false</hidden>
+            </edgeproperty>
+        </waypoints>
+        <hidden>false</hidden>
+    </edge>
+</diagram_Layout>
